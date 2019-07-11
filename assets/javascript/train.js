@@ -41,6 +41,16 @@ $('#submit').on('click', function(event){
     console.log('Arrival Time: ' + nextArrival);
     console.log(frequency);
 
+    //make fields required
+    if(trainName==''||destination==''||trainTime==''||frequency==''){
+        alert('please fill in all parts of form')
+    };
+
+    //set input format for minutes inputs
+    if(Number.isInteger(frequency)==false){
+        alert('please fill in an integer for "frequency(min)')
+    }
+
     //clear out form inputs so form is ready for next input
     $('#trainName').val('');
     $('#destination').val('');
@@ -58,6 +68,7 @@ $('#submit').on('click', function(event){
     database.ref().push(newTrain);
 })
 
+//pull information from database and display on table
 database.ref().on('child_added', function(childSnapshot) {
     var trainName = childSnapshot.val().trainName;
     var destination = childSnapshot.val().destination;
@@ -77,4 +88,4 @@ database.ref().on('child_added', function(childSnapshot) {
 });
 
 
-//pull information from database and display on table
+//set input format for time inputs
