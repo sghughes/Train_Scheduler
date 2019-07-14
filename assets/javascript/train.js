@@ -62,8 +62,7 @@ $('#submit').on('click', function(event){
         destination: destination,
         frequency: frequency,
         diffTime: diffTime
-        //nextArrival: nextArrival,
-        //minutesAway:minTillTrain
+
     };
 //push information to database
     database.ref().push(newTrain);
@@ -75,8 +74,6 @@ database.ref().on('child_added', function(childSnapshot) {
     var destination = childSnapshot.val().destination;
     var frequency = childSnapshot.val().frequency;
     var diffTime = childSnapshot.val().diffTime;
-    //var nextArrival = childSnapshot.val().nextArrival;
-    //var minTillTrain = childSnapshot.val().minutesAway;
 
     var tRemainder = diffTime % frequency;
     //calculate minutes away
